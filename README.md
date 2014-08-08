@@ -27,13 +27,14 @@ Quá trình bắt tay 3 bước được diễn ra như sau:
 
 ---------------------------------
 
-*Quá trình 1: Web-client sẽ gửi một bản tin SYN đến cổng port 80 của máy chủ web để yêu cầu kết nối với các trường bản tin như seq, ack, windown size, len, stt.*
+| *Quá trình 1: Web-client sẽ gửi một bản tin SYN đến cổng port 80 của máy chủ web để yêu cầu kết nối với các trường bản tin như seq, ack, windown size, len, stt.* |
+---------------------------------
 
-*Quá trình 2: Khi máy chủ nhật được bản tin SYN của client sẽ gửi lại bản tin (SYN+ACK)trong đó bản tin ACK là để xác nhận đã nhận được bản tin SYN của clien và bản tin SYN của server để yêu câu khởi tạo với client với các trường bản tin tương tự như bản tin SYN của clien*
+| *Quá trình 2: Khi máy chủ nhật được bản tin SYN của client sẽ gửi lại bản tin (SYN+ACK)trong đó bản tin ACK là để xác nhận đã nhận được bản tin SYN của clien và bản tin SYN của server để yêu câu khởi tạo với client với các trường bản tin tương tự như bản tin SYN của clien* |
+---------------------------------
 
-*Quá trình 3: Cient gửi lại bản tin ACK cho máy server và xác nhận phiên kết nối đã được khởi tạo*
-
-----------------------------------
+| *Quá trình 3: Cient gửi lại bản tin ACK cho máy server và xác nhận phiên kết nối đã được khởi tạo* |
+---------------------------------
 
 * Bước 2: Sau khi đã thiết lập phiên kết nối với máy chủ web-client sẽ gửi bản tin request đến server để yêu cầu lấy dữ liệu từ server
 
@@ -152,5 +153,15 @@ Content-Type: text/html; charset=UTF-8\r\n
 * Dòng 12:`Keep-Alive` thông báo phiên kết nối sẽ được giữ trong vòng 5s và max=100s
 * Dòng 13:`Connection` thông báo web-server sẽ giữ phiên kết nối sau khi gửi xong dữ liệu web-client yêu cầu
 * Dòng 14: `Content-Type` kiểu dữ liệu gửi cho web-client ở đây là dữ liệu dạng html
-* 
+
+**Note:** Trên đây mình xin giới thiệu về giao thức http. nguyên tắc hoạt động và các trường cơ bản nhất của bản tin Request và Respond. Tìm hiểu sâu về các bản tin http và trong thực tế mô hình triển khai như thế nào, sử dụng cache-server ra sao các bạn có thể tham khao tại link sau:
+
+[Link 1](http://dev.vast.vn/tuananh/Web/C%C4%90055#caches)--
+[Link 2](http://www.expressmagazine.net/development/2160/http-giao-thuc-ma-moi-lap-trinh-vien-nen-biet)--
+[Link 3](http://passionery.blogspot.com/2014/01/http-header-la-gi.html#.U-T5YaiVNN1)
+
+Ngoài ra tìm hiểu thêm về giao thức TCP được triển khai ở tầng transport.
+
+[Giao thức TCP](http://quantrimang.edu.vn/he-thong/he-thong-mang-lan/giao-thuc-tcp-ip-lam-viec-nhu-the-nao.htm)
+
 
