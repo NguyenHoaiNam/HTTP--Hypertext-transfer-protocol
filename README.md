@@ -33,7 +33,7 @@ Quá trình bắt tay 3 bước được diễn ra như sau:
 
 ---
 
-3. Chi tiết tưng bản tin:
+3. Chi tiết từng bản tin:
 
 a. Bản tin request : là bản tin yêu cầu từ client gửi đến cho server để yêu cầu lấy thông tin nào đó.
 
@@ -90,6 +90,59 @@ Bản tin respond có các mã trạng thái khi đến với client:
 * 501 Không thực hiện: máy chủ chưa hỗ trợ các chức năng được yêu cầu.
 * 503 Dịch vụ không: điều này có thể xảy ra nếu một hệ thống nội bộ trên máy chủ đã bị lỗi hay máy chủ bị quá tải. Thông thường, các máy chủ sẽ thậm chí không đáp ứng và các yêu cầu sẽ thời gian chờ.
 
+*VD1*: Các trường của bản tin GET:
+```
+GET /?p=17 HTTP/1.1\r\n
+Host: 192.168.1.245\r\n
+Cache-Control: max-age=0\r\n
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8\r\n
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.127 CoRom/36.0.1985.127 Safari/537.36\r\n
+Referer: http://192.168.1.245/?p=17\r\n
+Accept-Encoding: gzip,deflate,sdch\r\n
+Accept-Language: vi-VN,vi;q=0.8,fr-FR;q=0.6,fr;q=0.4,en-US;q=0.2,en;q=0.2\r\n
+```
+**Trong đó**:
+* Dòng 1:`GET` cho ta biết đây là bản tin `GET` và truy vấn đến `/?p=17` của server và dùng phiên bản http 1.1
+* Dòng 2: `Host` cho biết địa chỉ host của server ví dụ nhưng khi truy vấn đến trang `24h.com.vn` thì host lúc này là 24h.com.vn
+* Dòng 3: `Cache-Control`
+* Dòng 4:`Accept` Báo cho server biết web-client có thể đọc được dữ liệu nào.
+* Dòng 5: `User-Agent` Thông báo cho web-server biết web-client sử dụng những phiên bản nào để trình duyệt web điều này có tác dụng khi ta sử dụng điện thoại lên web thì server sẽ biết và gửi lại sử dụng version dành cho điện thoại
+* Dòng 6: `Referer:` cho biết URL có nguồn gốc từ địa chỉ nào
+* Dòng 7: `Accept-Encoding` Web-client có thể đọc được kiểu mã hóa nào.
+* Dòng 8: `Accept-Language` Ngôn ngữ của web-client nếu web-server có ngôn ngữ đó sẽ trả về ngôn ngữ đó cho web-client, nếu không nó sẽ trả về ngôn ngữ mặc định của nó.
 
+*VD2*: Các trường của bản tin Respont từ web-server
+```
+HTTP/1.1 200 OK\r\n
+Date: Sat, 12 Jul 2014 19:23:57 GMT\r\n
+Server: Apache/2.2.22 (Ubuntu)\r\n
+X-Powered-By: PHP/5.3.10-1ubuntu3.12\r\n
+Expires: Wed, 11 Jan 1984 05:00:00 GMT\r\n
+Cache-Control: no-cache, must-revalidate, max-age=0\r\n
+Pragma: no-cache\r\n
+Link: <http://192.168.1.245/?p=17>; rel=shortlink\r\n
+Vary: Accept-Encoding\r\n
+Content-Encoding: gzip\r\n
+Content-Length: 7128\r\n
+Keep-Alive: timeout=5, max=100\r\n
+Connection: Keep-Alive\r\n
+Content-Type: text/html; charset=UTF-8\r\n
+```
+**Trong đó**:
+* Dòng 1: `HTTP` bản tin respond với mã 200 báo cho web-client biết truy suất thành công và đã gửi dữ liệu yêu cầu.
+* Dòng 2: `Date` ngày dữ liệu được lưu trên server
+* Dòng 3: `Server` chỉ ra thông tin server sử dụng phiên bản của chương trình máy chủ
+* Dòng 4: `X-Powered-By` 
+* Dòng 5: `Expires:`
+* Dòng 6: `Cache-Control` bảo cho web-client không lưu trong bộ nhớ cache
+* Dòng 7: `Pragma`
+* Dòng 8: `Link` đia chỉ URL trên web-client
+* Dòng 9: `Vary`
+* Dòng 10:`Content-Encoding` kiểu web-server mã hóa, phương pháp này giúp giảm dữ liệu trên đường truyền
+* Dòng 11: `Content-Length` thông báo cho web-client dung lượng gói tin vừa gửi cho web-client
+* Dòng 12:`Keep-Alive` thông báo phiên kết nối sẽ được giữ trong vòng 5s và max=100s
+* Dòng 13:`Connection` thông báo web-server sẽ giữ phiên kết nối sau khi gửi xong dữ liệu web-client yêu cầu
+* Dòng 14: `Content-Type` kiểu dữ liệu gửi cho web-client ở đây là dữ liệu dạng html
+* 
 
 
