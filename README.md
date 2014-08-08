@@ -1,17 +1,21 @@
 HTTP--Hypertext-transfer-protocol--
 ======
-##Nội dung:
-### 1. Khái niệm
-### 2. Nguyên tắc hoạt động của trình duyệt web với Web-server
+####Nội dung trình bày:
+##### 1. Khái niệm
+##### 2. Nguyên tắc hoạt động của trình duyệt web với Web-server
+##### 3. Chi tiết bản tin request và respond
 
 ---
-1. Khái niệm:
+
+- **1. Khái niệm:**
 
 HTTP(hypertext transfer protocol)là giao thức thuộc tầng ứng dụng tronng mô hình OSI, là trung tâm của Web. HTTP được thực hiện trong hai chương trình: một chương trình máy khách và chương trình máy chủ. Chương trình máy khách và chương trình máy chủ, thực hiện trên các hệ thống đầu cuối khác nhau, nói chuyện với nhau khác bằng cách trao đổi các thông điệp HTTP. Dùng để trao đổi ngôn ngữ văn bản,hình ảnh, đồ họa, âm thanh và được sử dụng rất phổ biến trên các máy chủ web-server.
 
-2. Nguyên tắc hoạt động:
+- **2. Nguyên tắc hoạt động:**
 
 HTTP chạy trên tầng ứng dụng trong mô hinh OSI và chạy dướt nên giao thức tcp ở tầng vận chuyển. HTTP sử cổng port 80 để giao tiếp với các client, và sử dụng bản tin respond để đáp ứng các bản tin request của client.
+
+<img class="image__pic js-image-pic" src="http://i.imgur.com/hPdPxcR.png" alt="" id="screenshot-image">
 
 **Các bước giao tiếp giữa web-client và web-server**
 
@@ -21,21 +25,25 @@ HTTP chạy trên tầng ứng dụng trong mô hinh OSI và chạy dướt nên
 <img class="image__pic js-image-pic" src="http://i.imgur.com/xXfDBmn.png" alt="" id="screenshot-image">
 Quá trình bắt tay 3 bước được diễn ra như sau:
 
+---------------------------------
+
 *Quá trình 1: Web-client sẽ gửi một bản tin SYN đến cổng port 80 của máy chủ web để yêu cầu kết nối với các trường bản tin như seq, ack, windown size, len, stt.*
 
 *Quá trình 2: Khi máy chủ nhật được bản tin SYN của client sẽ gửi lại bản tin (SYN+ACK)trong đó bản tin ACK là để xác nhận đã nhận được bản tin SYN của clien và bản tin SYN của server để yêu câu khởi tạo với client với các trường bản tin tương tự như bản tin SYN của clien*
 
 *Quá trình 3: Cient gửi lại bản tin ACK cho máy server và xác nhận phiên kết nối đã được khởi tạo*
 
+----------------------------------
+
 * Bước 2: Sau khi đã thiết lập phiên kết nối với máy chủ web-client sẽ gửi bản tin request đến server để yêu cầu lấy dữ liệu từ server
 
 * Bước 3: Khi nhận được bản tin resquest từ client. Server gửi lại bản tin ACK cho client xác nhận đã nhận được bản tin request của client và ngay sau đó sẽ gửi cho client gói tin có chưa dữ liệu mà client yêu cầu.
 
----
+-
 
-3. Chi tiết từng bản tin:
+- **3. Chi tiết từng bản tin:**
 
-a. Bản tin request : là bản tin yêu cầu từ client gửi đến cho server để yêu cầu lấy thông tin nào đó.
+**a. Bản tin request :** là bản tin yêu cầu từ client gửi đến cho server để yêu cầu lấy thông tin nào đó.
 
 Trong bản tin resquest của client có các kiểu bản tin như sau:
 
@@ -57,7 +65,8 @@ Trong bản tin resquest của client có các kiểu bản tin như sau:
 *TRACE:* sử dụng để lấy các bước nhảy là một yêu cầu cần thiết để làm tròn chuyến đi từ máy chủ. Mỗi proxy trung gian hoặc gateway sẽ bơm IP hoặc tên DNS vào trường “Via”. Điều này có thể được sử dụng cho mục đích chẩn đoán.
 
 *OPTIONS:* sử dụng để lấy các khả năng máy chủ. Về phía khách hàng, nó có thể được sử dụng để chỉnh sửa theo yêu cầu dựa trên những gì các máy chủ có thể được hỗ trợ
-b. Bản tin respond: là bản tin đáp ứng yêu cầu từ phía client:
+
+*b. Bản tin respond:* là bản tin đáp ứng yêu cầu từ phía client:
 Bản tin respond có các mã trạng thái khi đến với client:
 
 | Mã trạng thái | Ý nghĩa |
@@ -144,5 +153,4 @@ Content-Type: text/html; charset=UTF-8\r\n
 * Dòng 13:`Connection` thông báo web-server sẽ giữ phiên kết nối sau khi gửi xong dữ liệu web-client yêu cầu
 * Dòng 14: `Content-Type` kiểu dữ liệu gửi cho web-client ở đây là dữ liệu dạng html
 * 
-
 
