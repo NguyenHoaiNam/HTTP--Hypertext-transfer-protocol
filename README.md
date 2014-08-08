@@ -44,7 +44,7 @@ Trong bản tin resquest của client có các kiểu bản tin như sau:
 <img class="image__pic js-image-pic" src="http://i.imgur.com/Fgz9QEO.png" alt="" id="screenshot-image">
 
 *POST*: tạo ra một nguồn tài nguyên mới. POST yêu cầu thường mang một tải trọng mà xác định các dữ liệu về tài nguyên mới.
-<img class="image__pic js-image-pic" src="http://i.imgur.com/wEKqTSI.png" alt="" id="screenshot-image">
+<img class="image__pic js-image-pic" src="http://i.imgur.com/3X5sxhq.png" alt="" id="screenshot-image">
 
 *PUT*: cập nhật một nguồn tài nguyên hiện có. Tải trọng có thể chứa dữ liệu cập nhật của nguồn tài liệu.
 
@@ -68,13 +68,28 @@ Bản tin respond có các mã trạng thái khi đến với client:
 |4xx | Lỗi đến từ phía người dùng |
 |5xx | Lỗi trong server |
 
-########## Đối với mã 2xx:
-########### * 202 Chấp nhận: yêu cầu được chấp nhận nhưng có thể không bao gồm các nguồn tài nguyên trong các phản ứng. Điều này rất hữu ích để chế biến async ở phía máy chủ. Các máy chủ có thể chọn để gửi thông tin để theo dõi.
-########### * 204 Không có nội dung: không có cơ quan thông báo trong các phản ứng.
-########### * 205 Đặt lại Nội dung: chỉ ra cho khách hàng để thiết lập lại xem tài liệu của nó.
-########### * 206 phần nội dung: chỉ ra rằng phản ứng chỉ chứa nội dung từng phần. Tiêu đề bổ sung cho phạm vi chính xác và thông tin hết nội dung.
+Đối với mã 2xx:
+* 202 Chấp nhận: yêu cầu được chấp nhận nhưng có thể không bao gồm các nguồn tài nguyên trong các phản ứng. Điều này rất hữu ích để chế biến async ở phía máy chủ. Các máy chủ có thể chọn để gửi thông tin để theo dõi.
+* 204 Không có nội dung: không có cơ quan thông báo trong các phản ứng.
+* 205 Đặt lại Nội dung: chỉ ra cho khách hàng để thiết lập lại xem tài liệu của nó.
+* 206 phần nội dung: chỉ ra rằng phản ứng chỉ chứa nội dung từng phần. Tiêu đề bổ sung cho phạm vi chính xác và thông tin hết nội dung.
 
-########## Đối với mã 3xx:
-###########
+Đối với mã 3xx:
+* 301 Moved Permanently: tài nguyên hiện tại là một URL mới.
+* 303 Xem khác: tài nguyên được tạm thời đặt tại một URL mới. Vị trí phản ứng tiêu đề chứa URL tạm thời.
+* 304 Không thay đổi: máy chủ đã xác định rằng tài nguyên không thay đổi và khách hàng nên sử dụng bản sao lưu trữ của nó. Điều này dựa trên thực tế là khách hàng đang gửi ETag (Enttity Tag) thông tin đó là một hash của nội dung. Các máy chủ so sánh điều này với ETag tính toán riêng của mình để kiểm tra xem có sửa đổi.
+
+Đối với mã 4xx:
+* 400 Yêu cầu: yêu cầu đã bị thay đổi.
+* 401 Không được quyền: yêu cầu yêu cầu xác thực. Khách hàng có thể lặp lại các yêu cầu với tiêu đề ủy quyền. Nếu khách hàng đã bao gồm tiêu đề ủy quyền, sau đó các thông tin đã sai.
+* 403 Forbidden: máy chủ đã bị từ chối truy cập vào các tài nguyên.
+* 405 Phương thức không được phép: động từ HTTP không hợp lệ được sử dụng trong các dòng yêu cầu, hoặc máy chủ không hỗ trợ động từ.
+* 409 xung đột: máy chủ không thể hoàn thành yêu cầu do khách hàng đang cố gắng để sửa đổi một nguồn tài nguyên đó là mới hơn so với dấu thời gian của khách hàng. Xung đột phát sinh chủ yếu là cho các yêu cầu PUT trong hợp tác chỉnh sửa trên một tài nguyên.
+
+Đối với mã 5xx: Lỗi trong server
+* 501 Không thực hiện: máy chủ chưa hỗ trợ các chức năng được yêu cầu.
+* 503 Dịch vụ không: điều này có thể xảy ra nếu một hệ thống nội bộ trên máy chủ đã bị lỗi hay máy chủ bị quá tải. Thông thường, các máy chủ sẽ thậm chí không đáp ứng và các yêu cầu sẽ thời gian chờ.
+
+
 
 
